@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px auto;
+      padding: 20px;
+      width: 60%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+      /* Adjust the width as needed */
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+
+    /* Adjustments for small screens */
+   
+    html,
+    body {
+      height: 100%;
+    }
+
+    html {
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    *,
+    *:before,
+    *:after {
+      -moz-box-sizing: inherit;
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
+      line-height: 1.5;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      background-color:antiquewhite;
+    }
+
+
+    /* main ie fix */
+
+    main {
+      display: block;
+    }
+
+
+    /* anchor links */
+
+    a {
+      color: #009688;
+    }
+
+    a:hover,
+    a:active {
+      text-decoration: none;
+    }
+
+
+    /* inline block */
+
+   
+
+    /* ul-reset */
+
+    .ul-reset {
+      padding-left: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      list-style: none;
+    }
+
+
+    /* wrapper */
+
+    .image {
+      
+      width: 50%;
+      margin-left: auto;
+   margin-right: auto;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+
+    /* header */
+
+    .header {
+      text-align: center;
+    }
+
+
+    /* navigation */
+
+    .navigation {
+      background-color: #eee;
+      font-weight: 700;
+    }
+
+    .navigation-list {
+      font-size: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .navigation-item {
+      font-size: 1.2rem;
+    }
+
+    .navigation-link {
+      display: block;
+      position: relative;
+      padding: 5px 20px;
+      text-decoration: none;
+      color: #333;
+      -webkit-transition: color .2s ease-in-out;
+      transition: color .2s ease-in-out;
+    }
+
+    .navigation-link:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 0;
+      border-bottom: solid 2px;
+    }
+
+    .navigation-link:before {
+      left: 0;
+    }
+
+    .navigation-link:hover {
+      color: #009688;
+    }
+
+    .navigation-link:hover:before {
+      width: 100%;
+    }
+
+    .navigation-link:before {
+      -webkit-transition: width .2s ease-in-out;
+      transition: width .2s ease-in-out;
+    }
+
+
+    /* main */
+
+    .main {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .content-article {
+      margin-top: 80px;
+    }
+
+    .content-article:first-child {
+      margin-top: 0;
+    }
+
+    .content-article>h1:first-child {
+      margin-top: 0;
+    }
+    .logo {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* Navigation */
+.navigation {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+.navigation-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.navigation-item {
+  list-style-type: none;
+}
+
+.navigation-link {
+  text-decoration: none;
+  color: #333;
+  padding: 5px 20px;
+  position: relative;
+}
+
+.navigation-link:hover {
+  color: #009688;
+}
+
+/* Table Styling */
+.budget-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.budget-table th,
+.budget-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.budget-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+
+    
+  </style>
+</head>
+
+<body>
+  <div style="background-color: antiquewhite;margin-left: 20px;">
+  <header class="header" style="width: 1000px;border:5px solid black;border-radius: 10px;margin-left: 110px;">
+    <div class="image">
+      <img src="/logo.jpeg" width:200px;>
+      <div ><b>Welcome <%=email%></b></div>
+    </div>
+    <a href="/logout" style="display: block; margin-left: 870px; margin-bottom: 20px;">
+      <button style="padding: 10px 20px; background-color: #f42f2f; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Log out</button>
+  </a>
+    <div style="width:100%;border:2px solid black" >
+    <nav class="navigation">
+      <div class="wrapper">
+        <ul class="navigation-list ul-reset">
+          <li class="navigation-item ib">
+            <a href="/dashboard" class="navigation-link">Home</a>
+          </li>
+          <li class="navigation-item ib">
+            <a href="/sql/budgetform" class="navigation-link">Budget form</a>
+          </li>
+          <li class="navigation-item ib">
+            <a href="/sql/budgetinfo" class="navigation-link">Report</a>
+          </li>
+          <li class="navigation-item ib">
+            <a href="/sql/budgettotal" class="navigation-link">Total</a>
+          </li>
+        
+         
+          
+        </ul>
+      </div>
+
+    </nav>
+  </div>
+    
+  </header>
+</div>
+
+<div id="invoice" style="background-color:rgb(110, 38, 2); width: 1000px; margin-left: 130px; padding: 20px;border:2px solid black;border-radius: 10px;height: 500px;">
+    
+  <div class="container" style="background-color:aliceblue;height:450px;">
+    <div>
+<h2 style="font-family: 'Courier New', Courier, monospace;">Vishnu Budget proposal Application</h2>
+<p style="margin-top: 150px;">This application is used for storing the expenses for particular branch and can be retrived at anytime.And it also calculate total expenses for single and all the branches and can store them and retrive them at anytime.</p>
+  </div>
+</div>
+</div>
+</body>
+</html>
+

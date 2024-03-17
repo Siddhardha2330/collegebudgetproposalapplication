@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px auto;
+      padding: 20px;
+      width: 60%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+      /* Adjust the width as needed */
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+
+    /* Adjustments for small screens */
+   
+    html,
+    body {
+      height: 100%;
+    }
+
+    html {
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    *,
+    *:before,
+    *:after {
+      -moz-box-sizing: inherit;
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
+      line-height: 1.5;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      background-color:antiquewhite;
+    }
+
+
+    /* main ie fix */
+
+    main {
+      display: block;
+    }
+
+
+    /* headers */
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Roboto Slab", Times, "Times New Roman", serif;
+    }
+
+    h1 {
+      font-size: 2.2em;
+    }
+
+    h2 {
+      font-size: 2em;
+    }
+
+    h3 {
+      font-size: 1.8em;
+    }
+
+    h4 {
+      font-size: 1.6em;
+    }
+
+    h5 {
+      font-size: 1.4em;
+    }
+
+    h6 {
+      font-size: 1.2em;
+    }
+
+
+    /* anchor links */
+
+    a {
+      color: #009688;
+    }
+
+    a:hover,
+    a:active {
+      text-decoration: none;
+    }
+
+
+    /* inline block */
+
+    .ib {
+      display: -moz-inline-stack;
+      display: inline-block;
+      zoom: 1;
+      display: inline;
+      vertical-align: top;
+    }
+
+
+    /* ul-reset */
+
+    .ul-reset {
+      padding-left: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      list-style: none;
+    }
+
+
+    /* wrapper */
+
+    .image {
+      
+      width: 50%;
+      margin-right: auto;
+      margin-left: auto;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+
+    /* header */
+
+    .header {
+      text-align: center;
+    }
+
+
+    /* navigation */
+
+    .navigation {
+      background-color: #eee;
+      font-weight: 700;
+    }
+
+    .navigation-list {
+      font-size: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .navigation-item {
+      font-size: 1.2rem;
+    }
+
+    .navigation-link {
+      display: block;
+      position: relative;
+      padding: 5px 20px;
+      text-decoration: none;
+      color: #333;
+      -webkit-transition: color .2s ease-in-out;
+      transition: color .2s ease-in-out;
+    }
+
+    .navigation-link:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 0;
+      border-bottom: solid 2px;
+    }
+
+    .navigation-link:before {
+      left: 0;
+    }
+
+    .navigation-link:hover {
+      color: #009688;
+    }
+
+    .navigation-link:hover:before {
+      width: 100%;
+    }
+
+    .navigation-link:before {
+      -webkit-transition: width .2s ease-in-out;
+      transition: width .2s ease-in-out;
+    }
+
+
+    /* main */
+
+    .main {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .content-article {
+      margin-top: 80px;
+    }
+
+    .content-article:first-child {
+      margin-top: 0;
+    }
+
+    .content-article>h1:first-child {
+      margin-top: 0;
+    }
+    .logo {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* Navigation */
+.navigation {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+.navigation-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.navigation-item {
+  list-style-type: none;
+}
+
+.navigation-link {
+  text-decoration: none;
+  color: #333;
+  padding: 5px 20px;
+  position: relative;
+}
+
+.navigation-link:hover {
+  color: #009688;
+}
+
+/* Table Styling */
+.budget-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.budget-table th,
+.budget-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.budget-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+
+    
+  </style>
+</head>
+
+<body>
+  <div style="background-color: antiquewhite;margin-left: 20px;">
+  <header class="header" style="width: 1000px;border:5px solid black;border-radius: 10px;margin-left: 110px;">
+    <div class="image">
+      <img src="/logo.jpeg" width:200px;>
+      <div ><b>Welcome <%=email%></b></div>
+    </div>
+    <a href="/logout" style="display: block; margin-left: 870px; margin-bottom: 20px;">
+      <button style="padding: 10px 20px; background-color: #f42f2f; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Log out</button>
+  </a> <div style="width:100%;border:2px solid black" >
+    <nav class="navigation">
+      <div class="wrapper">
+        <ul class="navigation-list ul-reset">
+          <li class="navigation-item ib">
+            <a href="/dashboard" class="navigation-link">Home</a>
+          </li>
+          <li class="navigation-item ib">
+            <a href="/sql/budgetform" class="navigation-link">Budget form</a>
+          </li>
+          <li class="navigation-item ib">
+            <a href="/sql/budgetinfo" class="navigation-link">Report</a>
+          </li>
+        
+          <li class="navigation-item ib">
+            <a href="/sql/budgettotal" class="navigation-link">Total</a>
+          </li>
+          
+        </ul>
+      </div>
+
+    </nav>
+  </div>
+    
+  </header>
+</div>
+
+
+
+
+  <div id="invoice" style="background-color:rgb(110, 38, 2); width: 1000px; margin-left: 130px; padding: 20px;border:2px solid black;border-radius: 10px;">
+    
+    <div class="container" style="background-color:aliceblue;">
+
+      <form id="budgetForm" action="/sql/submit" method="post">
+        <h1>Total Expenses for all the branches</h1>
+        <table class="budget-table">
+          <thead>
+          
+           
+
+            <tr>
+              <th>Particulars</th>
+              <th>Proposed Budget</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h2>Income</h2>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+
+              <td>
+                <h3>Tuition Fee</h3>
+              </td>
+
+            </tr>
+            <tr>
+              <td>B.Tech</td>
+              <td><%=result.in1%></td>
+            </tr>
+            <tr>
+              <td>M.Tech</td>
+              <td><%=result.in2%></td>
+            </tr>
+            <tr>
+              <td><b>Research Grants</b></td>
+              <td><%= result.in3 %></td>
+            </tr>
+            <tr>
+              <td><b>Hospital Revenue (clinic wise)</b></td>
+              <td><%= result.in4 %></td>
+            </tr>
+            <tr>
+              <td><b>Hostel Fee and Mess Fee</b></td>
+              <td><%= result.in5 %></td>
+            </tr>
+            <tr>
+              <td><b>Transportation Fee</b></td>
+              <td><%= result.in6 %></td>
+            </tr>
+            <tr>
+              <td><b>Other Revenue (Radio Vishnu 90.4)</b></td>
+              <td><%= result.in7 %></td>
+            </tr>
+            <tr>
+              <td><b style="margin-left: 150px;">Total  :</b></td>
+              <td><%= result.totalin %></td>
+            </tr>
+            
+
+            <tr>
+              <td>
+                <h2>Expenditure - Recurring</h2>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <h3>Physical Expenditure</h3>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Advertisement Expenses</td>
+              <td><%= result.pe1 %></td>
+            </tr>
+            <tr>
+              <td>Audit Fee</td>
+              <td><%= result.pe2 %></td>
+            </tr>
+            <tr>
+              <td>Bank Charges</td>
+              <td><%= result.pe3 %></td>
+            </tr>
+            <tr>
+              <td>Books and Periodicals, Journals</td>
+              <td><%= result.pe4 %></td>
+            </tr>
+            <tr>
+              <td>Electricity Charges</td>
+              <td><%= result.pe5 %></td>
+            </tr>
+            <tr>
+              <td>Financial Charges / Interest Charges</td>
+              <td><%= result.pe6 %></td>
+            </tr>
+            <tr>
+              <td>General Expenses</td>
+              <td><%= result.pe7 %></td>
+            </tr>
+            <tr>
+              <td>Guest House Maintenance</td>
+              <td><%= result.pe8 %></td>
+            </tr>
+            <tr>
+              <td>Horticulture Expenses</td>
+              <td><%= result.pe9 %></td>
+            </tr>
+            <tr>
+              <td>House Keeping Charges</td>
+              <td><%= result.pe10 %></td>
+            </tr>
+            <tr>
+              <td>Students Insurance and Building Insurance</td>
+              <td><%= result.pe11 %></td>
+            </tr>
+            <tr>
+              <td>Professional Charges</td>
+              <td><%= result.pe12 %></td>
+            </tr>
+            <tr>
+              <td>Rates and Taxes, Professional Tax, Property Tax</td>
+              <td><%= result.pe13 %></td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Repairs and Maintenance</h4>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 200px;">Building Maintenance</p>
+              </td>
+              <td><%= result.pe14 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 200px;">Vehicle Maintenance</p>
+              </td>
+              <td><%= result.pe15 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 200px;">Electrical Maintenance</p>
+              </td>
+              <td><%= result.pe16 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 200px;">Computer Maintenance</p>
+              </td>
+              <td><%= result.pe17 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 200px;">Generator Maintenance</p>
+              </td>
+              <td><%= result.pe18 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 200px;">Furniture Maintenance</p>
+              </td>
+              <td><%= result.pe19 %></td>
+            </tr>
+            <tr>
+              <td>Security Charges</td>
+              <td><%= result.pe20 %></td>
+            </tr>
+            <tr>
+              <td>Telephone Charges</td>
+              <td><%= result.pe21 %></td>
+            </tr>
+            <tr>
+              <td>Transportation of Goods and Service</td>
+              <td><%= result.pe22 %></td>
+            </tr>
+            <tr>
+              <td>Water Treatment Plant Maintenance</td>
+              <td><%= result.pe23 %></td>
+            </tr>
+            <tr>
+              <td>Sewage Treatment Plant Expenses</td>
+              <td><%= result.pe24 %></td>
+            </tr>
+            <tr>
+              <td><b style="margin-left: 150px;">Total A</b></td>
+              <td><%= result.totalA %></td>
+            </tr>
+            
+            <tr>
+              <td>
+                <h2>Academic Expenditure</h2>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Statutory Inspections and Accreditation Expenses</td>
+              <td><%= result.ae1 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 150px;">NBA / NAAC/ Autonomous/ FFC</p>
+              </td>
+              <td><%= result.ae2 %></td>
+            </tr>
+            <tr>
+              <td>Affiliation Fee</td>
+              <td><%= result.ae3 %></td>
+            </tr>
+            <tr>
+              <td>JNTU Common Service Fees</td>
+              <td><%= result.ae4 %></td>
+            </tr>
+            <tr>
+              <td>Students Gifts, Merit Prizes</td>
+              <td><%= result.ae5 %></td>
+            </tr>
+            <tr>
+              <td>Governing Body Expenses</td>
+              <td><%= result.ae6 %></td>
+            </tr>
+            <tr>
+              <td>Faculty Car Hire Charges</td>
+              <td><%= result.ae7 %></td>
+            </tr>
+            <tr>
+              <td>Faculty Development Programs</td>
+              <td><%= result.ae8 %></td>
+            </tr>
+            <tr>
+              <td>Examination Expenses, Board of Study Expenses</td>
+              <td><%= result.ae9 %></td>
+            </tr>
+            <tr>
+              <td>Staff Conveyance and Travelling Expenses</td>
+              <td><%= result.ae10 %></td>
+            </tr>
+            <tr>
+              <td>Hospital/ Stifund Expenses</td>
+              <td><%= result.ae11 %></td>
+            </tr>
+            <tr>
+              <td>Hospitality Charges</td>
+              <td><%= result.ae12 %></td>
+            </tr>
+            <tr>
+              <td>Inspection Charges (AICTE / JNTU/NTRUHS)</td>
+              <td><%= result.ae13 %></td>
+            </tr>
+            <tr>
+              <td>Internet / Website Expenses</td>
+              <td><%= result.ae14 %></td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Students Extra Co-Curricular Activities</h4>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 150px;">1st Induction Program</p>
+              </td>
+              <td><%= result.ae15 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 150px;">Annual Day Expenses</p>
+              </td>
+              <td><%= result.ae16 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 150px;">Specify and other Functions</p>
+              </td>
+              <td><%= result.ae17 %></td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Lab Maintenance</h4>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 150px;">Consumables</p>
+              </td>
+              <td><%= result.ae18 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 150px;">Glasswares</p>
+              </td>
+              <td><%= result.ae19 %></td>
+            </tr>
+            <tr>
+              <td>Membership, Certification Exps</td>
+              <td><%= result.ae20 %></td>
+            </tr>
+            <tr>
+              <td>PG New Courses/ New Colleges</td>
+              <td><%= result.ae21 %></td>
+            </tr>
+            <tr>
+              <td>Postage and Courier Charges</td>
+              <td><%= result.ae22 %></td>
+            </tr>
+            <tr>
+              <td>Printing and Stationery</td>
+              <td><%= result.ae23 %></td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Research and Development</h4>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 150px;">In House R & D</p>
+              </td>
+              <td><%= result.ae24 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 150px;">Consultancy Incentives</p>
+              </td>
+              <td><%= result.ae25 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 150px;">Seed Funding</p>
+              </td>
+              <td><%= result.ae26 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 150px;">Incentives for Paper Publication</p>
+              </td>
+              <td><%= result.ae27 %></td>
+            </tr>
+            <tr>
+              <td>
+                <p style="margin-left: 150px;">Incentives on Patents</p>
+              </td>
+              <td><%= result.ae28 %></td>
+            </tr>
+            <tr>
+              <td>Seminar and Workshops</td>
+              <td><%= result.ae29 %></td>
+            </tr>
+            <tr>
+              <td>Students Extra Curricular Activities (Student Development Programs)</td>
+              <td><%= result.ae30 %></td>
+            </tr>
+            <tr>
+              <td>Remunerations to Visiting Faculty</td>
+              <td><%= result.ae31 %></td>
+            </tr>
+            <tr>
+              <td>Placement, Training and Rectruitment Cell</td>
+              <td><%= result.ae32 %></td>
+            </tr>
+            <tr>
+              <td>FM / VTV Maintenance</td>
+              <td><%= result.ae33 %></td>
+            </tr>
+            <tr>
+              <td>Students Concession fee</td>
+              <td><%= result.ae34 %></td>
+            </tr>
+            <tr>
+              <td>Grants Expenditure</td>
+              <td><%= result.ae35 %></td>
+            </tr>
+            <tr>
+              <td>Board of Study Expenses</td>
+              <td><%= result.ae36 %></td>
+            </tr>
+            
+            <tr>
+              <td><b style="margin-left: 150px;">Total B</b></td>
+              <td><%=result.totalB%></td>
+            </tr>
+            
+            <tr>
+              <td>
+                <h2>Personnel Expenses</h2>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Salaries and Wages</td>
+              <td><%= result.per1 %></td>
+          </tr>
+          <tr>
+              <td>Provident Fund (EPF+FPF)</td>
+              <td><%= result.per2 %></td>
+          </tr>
+          <tr>
+              <td>Staff Welfare</td>
+              <td><%= result.per3 %></td>
+          </tr>
+          <tr>
+              <td>Contribution to ESI</td>
+              <td><%= result.per4 %></td>
+          </tr>
+          <tr>
+              <td>Mediclaim</td>
+              <td><%= result.per5 %></td>
+          </tr>
+          <tr>
+              <td>Gratuity Provision / Premium</td>
+              <td><%= result.per6 %></td>
+          </tr>
+          
+          <tr>
+              <td><b style="margin-left: 150px;">Total C</b></td>
+              <td><%= result.totalC %></td>
+          </tr>
+          <tr>
+              <td><b style="margin-left: 150px;">Total D= (A+B+C)</b></td>
+              <td><%= result.totalD %></td>
+          </tr>
+         
+          <tr>
+              <td>
+                  <h2>Non Recurring Expenditure</h2>
+              </td>
+              <td></td>
+          </tr>
+          <tr>
+              <td>Infrastructure Requirements</td>
+              <td><%= result.nre1 %></td>
+          
+          </tr>
+          <tr>
+              <td>Lab Equipments</td>
+              <td><%= result.nre2 %></td>
+          
+          </tr>
+          <tr>
+              <td>Computers and Peripherals</td>
+              <td><%= result.nre3 %></td>
+          
+          </tr>
+          <tr>
+              <td>Softwares of all Departments</td>
+              <td><%= result.nre4 %></td>
+          
+          </tr>
+          <tr>
+              <td>Furniture and Fixtures</td>
+              <td><%= result.nre5 %></td>
+          
+          </tr>
+          <tr>
+              <td>Air Conditioner / Projectors / UPS</td>
+              <td><%= result.nre6 %></td>
+          
+          </tr>
+          <tr>
+              <td>Electrical Equipment</td>
+              <td><%= result.nre7 %></td>
+          
+          </tr>
+          <tr>
+              <td>Library Books and Journals</td>
+              <td><%= result.nre8 %></td>
+          
+          </tr>
+          <tr>
+              <td>Sports Equipment</td>
+              <td><%= result.nre9 %></td>
+          
+          </tr>
+          <tr>
+              <td>Motor Vehicles</td>
+              <td><%= result.nre10 %></td>
+          
+          </tr>
+          <tr>
+            <td><b style="margin-left: 150px;">TotalE:</b></td>
+            <td><%=result.totalE%></td>
+          </tr>
+          <tr>
+              <td><b style="margin-left: 150px;">Total</b></td>
+              <td><%= result.total %></td>
+          </tr>
+          
+          
+      
+
+
+               </tbody>
+        </table>
+       
+      </form>
+
+
+    </div>
+
+  </div>
+  
+</body>
+
+</html>
